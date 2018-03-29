@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.newpc.myapplication.ViewAppointment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="299dp"
+        android:layout_height="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_marginTop="14dp"
+        android:text="Your Next Appointment is on"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/view_date"
+        android:layout_alignBottom="@+id/view_date"
+        android:layout_alignStart="@+id/textView6"
+        android:text="Date"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/view_day"
+        android:layout_alignBottom="@+id/view_day"
+        android:layout_alignStart="@+id/textView8"
+        android:text="Day"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="230dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/chng"
+        android:layout_alignTop="@+id/view_time"
+        android:text="Time"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="321dp" />
+
+    <Button
+        android:id="@+id/chng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/back"
+        android:layout_alignBottom="@+id/back"
+        android:layout_marginEnd="30dp"
+        android:layout_toStartOf="@+id/back"
+        android:text="Change Appointment"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="424dp" />
+
+    <TextView
+        android:id="@+id/view_day"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/view_date"
+        android:layout_below="@+id/view_date"
+        android:layout_marginTop="36dp"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+    <TextView
+        android:id="@+id/view_time"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/view_day"
+        android:layout_below="@+id/view_day"
+        android:layout_marginTop="44dp"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="230dp" />
+
+    <TextView
+        android:id="@+id/view_date"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="33dp"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="329dp" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="52dp"
+        android:text="Go Back"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="424dp" />
+</RelativeLayout>
