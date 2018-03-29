@@ -1,8 +1,11 @@
 package com.example.newpc.myapplication;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ViewPrescription extends AppCompatActivity {
@@ -14,7 +17,7 @@ public class ViewPrescription extends AppCompatActivity {
         setContentView(R.layout.activity_view_prescription);
 
         String date=getIntent().getStringExtra("Date");
-        String uname=getIntent().getStringExtra("Username");
+        final String uname=getIntent().getStringExtra("Username");
 
         TextView name_view=(TextView)findViewById(R.id.name);
         TextView dob_view=(TextView)findViewById(R.id.dob);
@@ -43,6 +46,16 @@ public class ViewPrescription extends AppCompatActivity {
                date_view.setText(date);
             }
         }
+
+        Button go_back=(Button)findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(ViewPrescription.this,PrescriptionDate.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
 
 
 
