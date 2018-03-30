@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewPrescription extends AppCompatActivity {
     DatabaseHelper db;
@@ -37,14 +38,27 @@ public class ViewPrescription extends AppCompatActivity {
 
             System.out.println("date is a"+date);
             if(data.getCount() ==1){
-               name_view.setText(data.getString(0)+" "+data.getString(1));
-               dob_view.setText(data.getString(2));
-               age_view.setText(data.getString(3));
-               symptom_view.setText(data.getString(4));
-               medication_view.setText(data.getString(5));
-               doctor_view.setText(data.getString(6));
-               date_view.setText(date);
+
+                    name_view.setText(data.getString(0) + " " + data.getString(1));
+                    dob_view.setText(data.getString(2));
+                    age_view.setText(data.getString(3));
+                    symptom_view.setText(data.getString(4));
+                    medication_view.setText(data.getString(5));
+                    doctor_view.setText(data.getString(6));
+                    date_view.setText(date);
+                }
+            if(data.getCount() >1){
+                while(data.moveToNext()) {
+                    name_view.setText(data.getString(0) + " " + data.getString(1));
+                    dob_view.setText(data.getString(2));
+                    age_view.setText(data.getString(3));
+                    symptom_view.setText(data.getString(4));
+                    medication_view.setText(data.getString(5));
+                    doctor_view.setText(data.getString(6));
+                    date_view.setText(date);
+                }
             }
+
         }
 
         Button go_back=(Button)findViewById(R.id.go_back);

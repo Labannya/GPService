@@ -24,55 +24,72 @@ public class PrescriptionDate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription_date);
 
-        final String uname=getIntent().getStringExtra("Username");
+        final String uname = getIntent().getStringExtra("Username");
 
-        ListView list_date = (ListView)findViewById(R.id.prescriptionDate_list);
-        db= new DatabaseHelper(this);
+        ListView list_date = (ListView) findViewById(R.id.prescriptionDate_list);
+        db = new DatabaseHelper(this);
 
         Cursor data = db.getListPrescriptionDate(uname);
-        data.moveToFirst();
-        System.out.println("Heloooo "+data.getString(0));
 
-        if(db.checkExisting(data).equals("Not found")){
-            Toast toastView = Toast.makeText(PrescriptionDate.this,"No prescription available",Toast.LENGTH_SHORT);
+        //data.moveToFirst();
+        //System.out.println("Heloooo "+data.getString(0));
+
+//        if(db.checkExisting(data).equals("Not found")){
+//            Toast toastView = Toast.makeText(PrescriptionDate.this,"No prescription available",Toast.LENGTH_SHORT);
+//            toastView.show();
+//        }
+
+        //else if(db.checkExisting(data).equals("Exists")) {
+        System.out.println("Datacount " + data.getCount());
+        if (data.getCount() == 0) {
+            Toast toastView = Toast.makeText(PrescriptionDate.this, "No prescription available", Toast.LENGTH_SHORT);
             toastView.show();
-        }
+        } else if (data.getCount() == 1) {
+            System.out.println("Heloooo 1" + data.getString(0));
+            theList.add(data.getString(0));
+            ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
+            list_date.setAdapter(adapter);
+            list_date.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    Cursor p_date = db.getPatientPrescription(uname, theList.get(position));
 
-        else if(db.checkExisting(data).equals("Exists")) {
-            if(data.getCount()==0){
-                Toast toastView = Toast.makeText(PrescriptionDate.this,"No prescription available",Toast.LENGTH_SHORT);
-                toastView.show();
-            }
-             else if(data.getCount()==1){
-                System.out.println("Heloooo 1" + data.getString(0));
+                    //Toast toastView = Toast.makeText(PrescriptionDate.this, "You have no prescription on this date. May be you just visited or missed the appointment", Toast.LENGTH_SHORT);
+                    //toastView.show();
+
+                    System.out.println("Item is " + theList.get(position));
+                    Intent i = new Intent(PrescriptionDate.this, ViewPrescription.class);
+
+                    i.putExtra("Date", theList.get(position));
+                    i.putExtra("Username", uname);
+
+                    startActivity(i);
+                }
+
+
+            });
+        } else if (data.getCount() > 1) {
+            // data.moveToFirst();
+            while (data.moveToNext()) {
+                System.out.println("Heloooo multiple" + data.getString(0));
+                System.out.println("Heloooo multiple dates" + data.getString(0));
                 theList.add(data.getString(0));
                 ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
                 list_date.setAdapter(adapter);
                 list_date.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        Cursor p_date = db.getPatientPrescription(uname, theList.get(position));
                         System.out.println("Item is " + theList.get(position));
-                        Intent i = new Intent(PrescriptionDate.this, ViewPrescription.class);
 
-                        i.putExtra("Date", theList.get(position));
-                        i.putExtra("Username", uname);
-
-                        startActivity(i);
+                          p_date.moveToFirst();
+                        System.out.println("Data for medication is " + p_date.getString(5));
+                        if (p_date.getString(5)==null){
+                        Toast toastView = Toast.makeText(PrescriptionDate.this, "You have no prescription on this date. May be you just visited or missed the appointment", Toast.LENGTH_SHORT);
+                        toastView.show();
                     }
-                });
-            }
-
-             else if(data.getCount() >1) {
-
-                while (data.moveToNext()) {
-                    System.out.println("Heloooo multiple" + data.getString(0));
-                    theList.add(data.getString(0));
-                    ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-                    list_date.setAdapter(adapter);
-                    list_date.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            System.out.println("Item is " + theList.get(position));
+                        //System.out.println("Item is " + theList.get(position));
+                        else{
                             Intent i = new Intent(PrescriptionDate.this, ViewPrescription.class);
 
                             i.putExtra("Date", theList.get(position));
@@ -80,10 +97,11 @@ public class PrescriptionDate extends AppCompatActivity {
 
                             startActivity(i);
                         }
-                    });
-                }
+                    }
+                });
             }
+            //}
         }
 
-    }
-}
+    }}
+

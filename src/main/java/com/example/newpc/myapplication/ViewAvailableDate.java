@@ -32,6 +32,7 @@ public class ViewAvailableDate extends AppCompatActivity {
         Cursor data = db.getListAvailableDate();
 
         while(data.moveToNext()){
+            System.out.println("Heloooo multiple dates" + data.getString(0));
             theList.add(data.getString(0));
             ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,theList);
             list_date.setAdapter(adapter);

@@ -21,10 +21,12 @@ public class Prescription {
             +", "+Col_5+" varchar(20)"+", "+Col_6+" varchar(20));";
 
     public static final String Insert_1="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'World' ,"+"'22' ,"+"'01/02/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,"+"'Paracetamol');";
+    public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'World' ,"+"'22' ,"+"'02/01/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,"+null+");";
     // public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'2' ,"+"'Hello' ,"+"'World' ,"+"'01.01.2002' ,"+"'Patient2' ,"+"'P102');";
     public static void createPatientTable(SQLiteDatabase db){
         db.execSQL(Table_Create);
         db.execSQL(Insert_1);
+        db.execSQL(Insert_2);
 
     }
 }

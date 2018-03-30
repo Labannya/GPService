@@ -18,7 +18,7 @@ import java.util.Date;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     static SQLiteDatabase db;
-    public static final int DATABASE_VERSION = 900000000;
+    public static final int DATABASE_VERSION = 2;
     public static  final String Database_name="Patient.db";
     public static final String Table_name="Patient_table";
     public static final String Col_1="ID";
@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db,int oldVersion, int newVersion) {
         System.out.println("Its in Upgrade");
         try {
-            if (newVersion > oldVersion) {
+           // if (newVersion > oldVersion) {
                 System.out.println("Its in Upgrade and in if");
                 db.execSQL("DROP TABLE IF EXISTS " + PatientDetails.Table_name);
                 db.execSQL("DROP TABLE IF EXISTS " + Availability.Table_name);
@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("DROP TABLE IF EXISTS " + Appointment.Table_name);
                 System.out.println("Its in Upgrade and done the drop");
                 onCreate(db);
-            }
+           // }
         }catch(Exception e){
             System.out.println("Its in Upgrade and didn't work for try");
             Toast.makeText(null,"due to "+e,Toast.LENGTH_LONG).show();
