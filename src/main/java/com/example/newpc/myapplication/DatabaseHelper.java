@@ -1,15 +1,24 @@
 package com.example.newpc.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by NewPC on 04/03/2018.
@@ -188,6 +197,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor chooseAvailableAppointment(CharSequence date, CharSequence time){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Pending_appointment, Time from "+Appointment.Table_name+" Where Pending_appointment='"+date+"' and Time='"+time+"'",null);
+        return data;
+    }
+
+    //Select Foreame from Patient_details where Surname='Hello' and not Username='Try'
+
+    public Cursor matchPendingAppointment(String username,String time){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Pending_appointment from Appointment_details where Time='"+time+"' and not Username='"+username+"'",null);
+        return data;
+    }
+
     public String checkExisting(Cursor data){
         String str= null;
         if(data.moveToFirst()){
@@ -209,5 +232,61 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         return format2.format(dt1);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String yearCount(String dob){
+        String today = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.US);
+         String yearDifference= String.valueOf(ChronoUnit.YEARS.between(LocalDate.parse(dob,formatter),LocalDate.parse(today,formatter)));
+         return yearDifference;
+
+    }
+
+
+
+    public String dayCount(String selectedDay){
+        String[] parts=selectedDay.split("/");
+        int year=Integer.parseInt(parts[2]);
+        int month=Integer.parseInt(parts[1]);
+        month=month-1;
+        int day=Integer.parseInt(parts[0]);
+        Date today = new Date();
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+
+        Calendar myCalender = Calendar.getInstance();
+        myCalender.set(year,month,day);
+
+        Date futureDate=myCalender.getTime();
+
+        String currentDate=format.format(today);
+        String nextDate=format.format(futureDate);
+
+        long days=(futureDate.getTime()-today.getTime())/86400000;
+
+        String daysCount=String.valueOf(days);
+
+        return daysCount;
+
+
+    }
+
+    public int getHour(String time){
+        String[] parts = time.split(":");
+        String hour = parts[0];
+        int hour_digit=Integer.parseInt(hour);
+        return hour_digit;
+    }
+
+
+    public int getMinute(String time){
+        String[] parts = time.split(":");
+        String second_part = parts[1];
+        String[] minute_parts=second_part.split(" ");
+        String minute=minute_parts[0];
+
+        int minute_digit=Integer.parseInt(minute);
+        return minute_digit;
     }
 }

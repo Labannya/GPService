@@ -133,6 +133,7 @@ public class AppointmentScreen extends AppCompatActivity {
                 }
 
                 else if(db.checkExisting(data).equals("Exists")) {
+                    System.out.print(data.getCount());
                     System.out.println("Hello Db is " + db.checkExisting(data));
                     if (data.getCount() == 0) {
                         Toast toastView = Toast.makeText(AppointmentScreen.this, "You have no pending appointment to cancel", Toast.LENGTH_SHORT);
