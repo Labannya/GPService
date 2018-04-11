@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="emptyString" />
+    <string name="username" />
+    <string name="title_activity_appointment_page">AppointmentPage</string>
+    <string name="title_activity_booking_appointment">BookingAppointment</string>
+    <string name="day_value" />
+    <string name="time_value" />
+    <string name="title_activity_view_available_date">ViewAvailableDate</string>
+    <string name="regarding" />
+    <string name="num" />
+
+
+</resources>
