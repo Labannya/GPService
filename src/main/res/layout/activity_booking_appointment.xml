@@ -63,7 +63,7 @@
         tools:text="@string/time_value" />
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -75,7 +75,7 @@
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/save"
+        android:layout_alignBottom="@+id/edit"
         android:layout_alignStart="@+id/time_value"
         android:text="Cancel" />
 
@@ -92,7 +92,7 @@
         android:id="@+id/cause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/save"
+        android:layout_above="@+id/edit"
         android:layout_alignStart="@+id/textView3"
         android:layout_marginBottom="34dp"
         android:ems="10"

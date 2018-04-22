@@ -8,5 +8,7 @@
     <string name="time_value" />
     <string name="title_activity_view_available_date">ViewAvailableDate</string>
     <string name="regarding" />
+    <string name="num" />
+
 
 </resources>

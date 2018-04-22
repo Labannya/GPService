@@ -49,12 +49,14 @@ public class CancelAppointment extends AppCompatActivity {
             public void onClick(View view) {
                 pending_data.moveToFirst();
                 System.out.println("date and time is respectively " + pending_data.getString(0) + pending_data.getString(1));
-                db.restoreAvaiableAppointment(pending_data.getString(0), pending_data.getString(1));
+                db.restoreAvaiableAppointment(pending_data.getString(0), pending_data.getString(1),uname);
                 System.out.println("Restored date and time respectively " + pending_data.getString(0) + " " + pending_data.getString(1));
 
                 db.deletePendingAppointment(uname);
                 Toast.makeText(CancelAppointment.this, "You cancelled you appointment successfully", Toast.LENGTH_SHORT).show();
-
+                Intent i= new Intent(CancelAppointment.this,AppointmentScreen.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
             }
         });
 

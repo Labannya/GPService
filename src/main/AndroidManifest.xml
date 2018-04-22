@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".AlarmReceiver"/>
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,16 @@
         <activity android:name=".NoAppointment" />
         <activity android:name=".CancelAppointment" />
         <activity android:name=".PrescriptionDate" />
-        <activity android:name=".ViewPrescription"></activity>
+        <activity android:name=".ViewPrescription" />
+        <activity android:name=".ViewHIstory" />
+        <activity android:name=".HistoryDate" />
+        <activity android:name=".Record" />
+        <activity android:name=".PatientInfo" />
+        <activity android:name=".PatientInfoEdit" />
+        <activity android:name=".RegularAlarmActivity" />
+        <activity android:name=".AppointmentAlarmActivity" />
+        <activity android:name=".AlarmActivity"></activity>
     </application>
+
 
 </manifest>

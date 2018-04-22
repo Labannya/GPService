@@ -33,6 +33,18 @@ public class Welcome extends Activity {
         });
 
 
+        Button button_u= (Button)findViewById(R.id.abtU);
+        button_u.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Welcome.this, Record.class);
+                i.putExtra("Username",textV.getText());
+                startActivity(i);
+            }
+
+        });
+
+
     }
 
 

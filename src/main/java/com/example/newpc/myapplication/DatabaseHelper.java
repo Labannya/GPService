@@ -1,24 +1,16 @@
 package com.example.newpc.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Created by NewPC on 04/03/2018.
@@ -27,7 +19,7 @@ import java.util.TimeZone;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     static SQLiteDatabase db;
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 9;
     public static  final String Database_name="Patient.db";
     public static final String Table_name="Patient_table";
     public static final String Col_1="ID";
@@ -74,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Availability.createAvailabilityTable(db);
         Prescription.createPatientTable(db);
         Appointment.createPatientTable(db);
+        RegularAlarm.createPatientTable(db);
 
     }
 
@@ -90,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("DROP TABLE IF EXISTS " + Availability.Table_name);
                 db.execSQL("DROP TABLE IF EXISTS " + Prescription.Table_name);
                 db.execSQL("DROP TABLE IF EXISTS " + Appointment.Table_name);
+                db.execSQL("DROP TABLE IF EXISTS " + RegularAlarm.Table_name);
                 System.out.println("Its in Upgrade and done the drop");
                 onCreate(db);
            // }
@@ -102,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String searchCredentials(String uname){
         SQLiteDatabase db;
         db=this.getReadableDatabase();
-        String query="Select Username, DoB from "+PatientDetails.Table_name;
+        String query="Select Username, Password from "+PatientDetails.Table_name;
         Cursor cursor=db.rawQuery(query,null);
         String a,b;
         b="not found";
@@ -126,18 +120,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
   }
 
+
+    public Cursor getPatientDetails(String uname){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select "+PatientDetails.Col_1+", "+PatientDetails.Col_2+", "+PatientDetails.Col_4+", "+PatientDetails.Col_6+", "+PatientDetails.Col_7+", "+PatientDetails.Col_8+" from "+PatientDetails.Table_name+" where "+PatientDetails.Col_3+"='"+uname+"'",null);
+        return data;
+    }
+
+    public void updatePatientDetails(String uname, CharSequence number, CharSequence email, CharSequence address){
+        SQLiteDatabase db= this.getWritableDatabase();
+        //Cursor data=db.rawQuery("Update "+Appointment.Table_name+" Set Pending_appointment='"+date+"', Time='"+time+"',Regarding='"+issue+"'"+" where Username='"+uname+"'",null);
+        db.execSQL("Update "+PatientDetails.Table_name+" Set Contact_number='"+number+"', Contact_email='"+email+"',Contact_address='"+address+"'"+" where Username='"+uname+"'");
+        //return data;
+    }
+
     public Cursor getListPrescriptionDate(String uname){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Attended_appointment from "+Prescription.Table_name+ " where Username='"+uname+"' and not Medicine ="+"''",null);
+        return data;
+    }
+
+    public Cursor getListHistoryDate(String uname){
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor data=db.rawQuery("Select Attended_appointment from "+Prescription.Table_name+ " where Username='"+uname+"'",null);
         return data;
     }
 
 
-    public Cursor getListTime(String date){
+    public Cursor getListTime(String date,String uname){
         SQLiteDatabase db= this.getWritableDatabase();
-        Cursor data=db.rawQuery("Select Available_time from "+Availability.Table_name+" where Available_day='"+date+"'",null);
+        //Cursor data=db.rawQuery("Select Available_time from "+Availability.Table_name+" where Available_day='"+date+"'",null);
+        Cursor data=db.rawQuery("Select Availability_details.Available_time from "+Availability.Table_name+" inner join "+PatientDetails.Table_name+" on Patient_details.Doctor_name=Availability_details.Doctor_name and Patient_details.Username='"+uname+"' and Availability_details.Available_day='"+date+"'",null);
         return data;
     }
+
+    public Cursor getPatientHistory(String uname,String date){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select "+PatientDetails.Table_name+"."+PatientDetails.Col_1+", "+PatientDetails.Table_name+"."+PatientDetails.Col_2+", "+PatientDetails.Table_name+"."+PatientDetails.Col_4+", "+Prescription.Table_name+"."+Prescription.Col_2+", "+Prescription.Table_name+"."+Prescription.Col_5+", "+Prescription.Table_name+"."+Prescription.Col_6+", "+Prescription.Table_name+"."+Prescription.Col_4+", "+Prescription.Table_name+"."+Prescription.Col_7+" from "+Prescription.Table_name+" inner join "+PatientDetails.Table_name+" on "+PatientDetails.Table_name+"."+PatientDetails.Col_3+"="+Prescription.Table_name+"."+Prescription.Col_1+" and "+Prescription.Table_name+"."+Prescription.Col_3+"="+"'"+date+"' and "+Prescription.Table_name+"."+Prescription.Col_1+"= '"+uname+"'",null);
+        return data;
+    }//getPatientHistory
+
 
     public Cursor getPatientPrescription(String uname,String date){
         SQLiteDatabase db= this.getWritableDatabase();
@@ -161,7 +183,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteAvaiableAppointment(String date,String time){
+
+
+    public void deleteAvaiableAppointment(CharSequence date, CharSequence time){
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor data=db.rawQuery("Delete from "+Availability.Table_name+" Where Available_day='"+date+"' and Available_time='"+time+"'",null);
         db.execSQL("Delete from "+Availability.Table_name+" Where Available_day='"+date+"' and Available_time='"+time+"'");
@@ -176,11 +200,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //return data;
     }
 
-
-    public void restoreAvaiableAppointment(String date,String time){
+    public void deleteRegularAlarmTable(){
         SQLiteDatabase db= this.getWritableDatabase();
-        Cursor data=db.rawQuery("Insert into "+Availability.Table_name+" Values('"+date+"'"+", '"+time+"'"+")",null);
-        db.execSQL("Insert into "+Availability.Table_name+" Values('"+date+"'"+", '"+time+"'"+")");
+
+        db.execSQL("Delete from "+RegularAlarm.Table_name);
+        //return data;
+    }
+
+    public void insertRegularAlarmTable(String time,String medicine){
+        SQLiteDatabase db= this.getWritableDatabase();
+
+        db.execSQL("Insert into "+RegularAlarm.Table_name+" Values ('"+time+"' ,"+"'"+medicine+"')");
+        //return data;
+
+    }
+
+
+    public void restoreAvaiableAppointment(String date,String time,String uname){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Insert into "+Availability.Table_name+" Values('"+date+"'"+", '"+time+"' ,"+"''"+")",null);
+        Cursor data1=db.rawQuery("Select Doctor_name from Patient_details where Username='"+uname+"'",null);
+        data1.moveToFirst();
+        db.execSQL("Insert into "+Availability.Table_name+" Values('"+date+"'"+", '"+time+"' ,'"+data1.getString(0)+"')");
         //return data;
     }
 
@@ -194,6 +235,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getPendingAppointment(String username){
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor data=db.rawQuery("Select Pending_appointment, Time from "+Appointment.Table_name+" Where Username='"+username+"'",null);
+        return data;
+    }
+
+
+    public Cursor getSnooze(){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Time, Medicine from "+RegularAlarm.Table_name,null);
         return data;
     }
 
@@ -235,14 +283,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String yearCount(String dob){
-        String today = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.US);
-         String yearDifference= String.valueOf(ChronoUnit.YEARS.between(LocalDate.parse(dob,formatter),LocalDate.parse(today,formatter)));
-         return yearDifference;
-
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public String yearCount(String dob){
+//        String today = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+//         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.US);
+//         String yearDifference= String.valueOf(ChronoUnit.YEARS.between(LocalDate.parse(dob,formatter),LocalDate.parse(today,formatter)));
+//         return yearDifference;
+//
+//    }
 
 
 
@@ -289,4 +337,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int minute_digit=Integer.parseInt(minute);
         return minute_digit;
     }
+
+
+    public String getDiffYears(Date first, Date last) {
+
+        Calendar a = getCalendar(first);
+        Calendar b = getCalendar(last);
+        int difference = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+        if (a.get(Calendar.DAY_OF_YEAR) > b.get(Calendar.DAY_OF_YEAR)) {
+            difference--;
+        }
+        String year_difference=String.valueOf(difference);
+        return year_difference;
+    }
+
+    public Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.UK);
+        cal.setTime(date);
+        return cal;
+    }
+
 }

@@ -16,6 +16,7 @@ public class ViewAvailableTime extends AppCompatActivity {
     DatabaseHelper db;
     ArrayList<String> theList = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +29,14 @@ public class ViewAvailableTime extends AppCompatActivity {
 
 
 
-        Cursor data = db.getListTime(time);
+        Cursor data = db.getListTime(time,uname);
+        System.out.println("It is in view time "+time);
+        //data.moveToFirst();
+        System.out.println("data is "+data.getCount());
 
         while(data.moveToNext()){
+
+            System.out.println("It is in view time loop");
             theList.add(data.getString(0));
             ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,theList);
             list_date.setAdapter(adapter);

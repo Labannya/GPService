@@ -14,16 +14,19 @@ public class Prescription {
     public static final String Col_4="Doctor_name";
     public static final String Col_5="Symptom";
     public static final String Col_6="Medicine";
+    public static final String Col_7="Dr_note";
 
 
 
     public static final String Table_Create="create table "+Table_name+" ("+Col_1+" varchar(20)"+", "+Col_2+" varchar(20)"+", "+Col_3+" varchar(20)"+", "+Col_4+" varchar(20)"
-            +", "+Col_5+" varchar(20)"+", "+Col_6+" varchar(20));";
+            +", "+Col_5+" varchar(20)"+", "+Col_6+" varchar(20)"+", "+Col_7+" varchar(20));";
 
-    public static final String Insert_1="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'World' ,"+"'22' ,"+"'01/02/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,"+"'Paracetamol');";
-    public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'World' ,"+"'22' ,"+"'02/01/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,"+null+");";
+
+    public static final String Insert_1="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+") "+"values ("+"'World' ,"+"'22' ,"+"'01/02/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,"+"'Paracetamol' ,"+"'Happened for cold and cough'"+");";
+    public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+") "+"values ("+"'World' ,"+"'22' ,"+"'02/01/2018' ,"+"'Dr. Andrew' ,"+"'Ferver' ,'"+"' ,"+"'just take rest'"+");";
     // public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'2' ,"+"'Hello' ,"+"'World' ,"+"'01.01.2002' ,"+"'Patient2' ,"+"'P102');";
     public static void createPatientTable(SQLiteDatabase db){
+        System.out.println("Tableeeeeeeeeeeeeeeeeeeeeee "+Table_Create);
         db.execSQL(Table_Create);
         db.execSQL(Insert_1);
         db.execSQL(Insert_2);

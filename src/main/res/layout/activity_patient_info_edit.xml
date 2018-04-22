@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.newpc.myapplication.PatientInfoEdit">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="40dp"
+        android:text="Name:"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <TextView
+        android:id="@+id/dob"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/name"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="21dp"
+        android:text="DoB:"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="104dp" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/dob"
+        android:layout_below="@+id/dob"
+        android:layout_marginTop="29dp"
+        android:text="Age:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_alignStart="@+id/age"
+        android:layout_below="@+id/age"
+        android:layout_marginTop="30dp"
+        android:text="Contact number:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/emai"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_alignStart="@+id/number"
+        android:layout_below="@+id/number"
+        android:layout_marginTop="34dp"
+        android:text="Contact email:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_alignStart="@+id/emai"
+        android:layout_below="@+id/emai"
+        android:layout_marginTop="24dp"
+        android:text="Contact adress:"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/address"
+        android:layout_below="@+id/address"
+        android:layout_marginTop="13dp"
+        android:text="Go back" />
+
+    <EditText
+        android:id="@+id/numTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/number"
+        android:ems="10"
+        android:inputType="text|textPersonName" />
+
+    <EditText
+        android:id="@+id/emailTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/numTxt"
+        android:layout_alignTop="@+id/emai"
+        android:ems="10"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/adrsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/address"
+        android:layout_toEndOf="@+id/address"
+        android:ems="10"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/nmTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/numTxt"
+        android:layout_alignTop="@+id/name"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dobTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nmTxt"
+        android:layout_alignTop="@+id/dob"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/ageTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dobTxt"
+        android:layout_alignTop="@+id/age"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/back"
+        android:layout_marginStart="41dp"
+        android:layout_toEndOf="@+id/address"
+        android:text="Save" />
+
+</RelativeLayout>

@@ -23,6 +23,21 @@ public class HomeScreen extends AppCompatActivity {
 
         final Cursor data = db.getListPrescriptionDate(uname);
 
+        Button btn_rmndr= (Button)findViewById(R.id.rmndr);
+
+        btn_rmndr.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomeScreen.this, AlarmActivity.class);
+
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+
+        });
+
+
+
         Button button3= (Button)findViewById(R.id.apntmnt);
         button3.setOnClickListener(new View.OnClickListener(){
             @Override
