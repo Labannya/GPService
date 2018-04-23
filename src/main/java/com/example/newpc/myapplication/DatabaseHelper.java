@@ -67,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Prescription.createPatientTable(db);
         Appointment.createPatientTable(db);
         RegularAlarm.createPatientTable(db);
+        AppointmentAlarm.createPatientTable(db);
 
     }
 
@@ -147,7 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getListTime(String date,String uname){
+    public Cursor getListTime(CharSequence date, String uname){
         SQLiteDatabase db= this.getWritableDatabase();
         //Cursor data=db.rawQuery("Select Available_time from "+Availability.Table_name+" where Available_day='"+date+"'",null);
         Cursor data=db.rawQuery("Select Availability_details.Available_time from "+Availability.Table_name+" inner join "+PatientDetails.Table_name+" on Patient_details.Doctor_name=Availability_details.Doctor_name and Patient_details.Username='"+uname+"' and Availability_details.Available_day='"+date+"'",null);
@@ -207,6 +208,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //return data;
     }
 
+
+    public void deleteAppointmentAlarmTable(){
+        SQLiteDatabase db= this.getWritableDatabase();
+
+        db.execSQL("Delete from "+AppointmentAlarm.Table_name);
+        //return data;
+    }
+
     public void insertRegularAlarmTable(String time,String medicine){
         SQLiteDatabase db= this.getWritableDatabase();
 
@@ -214,6 +223,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //return data;
 
     }
+
+    public void insertAppointmentAlarmTable(String time,String date){
+        SQLiteDatabase db= this.getWritableDatabase();
+
+        db.execSQL("Insert into "+AppointmentAlarm.Table_name+" Values ('"+time+"' ,"+"'"+date+"')");
+        //return data;
+
+    }
+
+
+
 
 
     public void restoreAvaiableAppointment(String date,String time,String uname){
@@ -238,10 +258,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getAvailability(String username){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Pending_appointment, Time from "+Appointment.Table_name+" Where Username='"+username+"'",null);
+        return data;
+    }
+
 
     public Cursor getSnooze(){
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor data=db.rawQuery("Select Time, Medicine from "+RegularAlarm.Table_name,null);
+        return data;
+    }
+
+
+    public Cursor getAppointmentSnooze(){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Time, Date from "+AppointmentAlarm.Table_name,null);
         return data;
     }
 

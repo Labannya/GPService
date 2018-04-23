@@ -17,7 +17,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/rmnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView26"
@@ -46,22 +46,22 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_below="@+id/editText3"
+        android:layout_alignStart="@+id/rmnd"
+        android:layout_below="@+id/rmnd"
         android:layout_marginTop="31dp"
         android:text="Set Alarm" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/cncl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button7"
-        android:layout_alignBottom="@+id/button7"
+        android:layout_alignBaseline="@+id/set"
+        android:layout_alignBottom="@+id/set"
         android:layout_marginStart="13dp"
-        android:layout_toEndOf="@+id/button7"
+        android:layout_toEndOf="@+id/set"
         android:text="Cancel Alarm" />
 
     <TextView

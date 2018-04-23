@@ -54,7 +54,7 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
                 //text_snooze.setText("1");
                 db.deleteRegularAlarmTable();
                 System.out.println("Helooooooo"+text_snooze.getText()+"Hi"+text_snooze.getText().toString().length());
-                if(text_snooze.getText().length()==0 | text_medicine.getText().length()==0){
+                if(text_snooze.getText().length()==0 || text_medicine.getText().length()==0){
                     Toast toastView = Toast.makeText(RegularAlarmActivity.this, "Please choose reminder time", Toast.LENGTH_SHORT);
                     toastView.show();
                 }

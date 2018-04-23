@@ -31,6 +31,13 @@ public class PatientDetails {
     public static final String Insert_3="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Smith' ,"+"'Gordon' ,"+"'SGordon' ,"+"'01/01/2001' ,"+"'SGordon01' ,"+"'1234567890' ,"+"'smith@email.com' ,"+"'London Road, Ls18 9pk' ,"+"'Dr Nathan');";
     public static final String Insert_4="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Sendra' ,"+"'Mike' ,"+"'SMike' ,"+"'01/01/2002' ,"+"'SMike02' ,"+"'1234567890' ,"+"'mike@email.com' ,"+"'London Road, Ls18 9pk' ,"+"'Dr Nathan');";
 
+    public static final String Insert_5="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Rachel' ,"+"'Hill' ,"+"'RHill' ,"+"'01/01/1991' ,"+"'RHill91' ,"+"'1234567890' ,"+"'rach@email.com' ,"+"'London Road, Ls190 8LK' ,"+"'Dr Andy');";
+    public static final String Insert_6="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Johnny' ,"+"'Perkin' ,"+"'JPerkin' ,"+"'01/01/1992' ,"+"'JPerkin92' ,"+"'1234567890' ,"+"'johnny@email.com' ,"+"'London Road, LS18 8QG' ,"+"'Dr Andy');";
+    public static final String Insert_7="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Selena' ,"+"'Gareth' ,"+"'SGareth' ,"+"'01/01/1991' ,"+"'SGareth91' ,"+"'1234567890' ,"+"'selena@email.com' ,"+"'London Road, MP70 0PI' ,"+"'Dr Nathan');";
+    public static final String Insert_8="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Lily' ,"+"'Huskins' ,"+"'LHuskins' ,"+"'01/01/1982' ,"+"'LHuskins92' ,"+"'1234567890' ,"+"'lily@email.com' ,"+"'London Road, Ls88 4RT' ,"+"'Dr Nathan');";
+
+    public static final String Insert_9="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Selena' ,"+"'Gareth' ,"+"'SGareth' ,"+"'01/01/1991' ,"+"'SGareth91' ,"+"'1234567890' ,"+"'selena@email.com' ,"+"'London Road, MP70 0PI' ,"+"'Dr Gemma');";
+    public static final String Insert_10="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+", "+Col_7+", "+Col_8+", "+Col_9+") "+"values ("+"'Lily' ,"+"'Huskins' ,"+"'LHuskins' ,"+"'01/01/1982' ,"+"'LHuskins92' ,"+"'1234567890' ,"+"'lily@email.com' ,"+"'London Road, Ls88 4RT' ,"+"'Dr Gemma');";
     //public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'1' ,"+"'Hello' ,"+"'Try' ,"+"'01/01/2002' ,"+"'Patient1' ,"+"'P101');";
     // public static final String Insert_2="insert into "+Table_name+" ("+Col_1+", "+Col_2+", "+Col_3+", "+Col_4+", "+Col_5+", "+Col_6+") "+"values ("+"'2' ,"+"'Hello' ,"+"'World' ,"+"'01.01.2002' ,"+"'Patient2' ,"+"'P102');";
     public static void createPatientTable(SQLiteDatabase db){
@@ -39,6 +46,14 @@ public class PatientDetails {
         db.execSQL(Insert_2);
         db.execSQL(Insert_3);
         db.execSQL(Insert_4);
+
+        db.execSQL(Insert_5);
+        db.execSQL(Insert_6);
+        db.execSQL(Insert_7);
+        db.execSQL(Insert_8);
+
+        db.execSQL(Insert_9);
+        db.execSQL(Insert_10);
 
     }
 

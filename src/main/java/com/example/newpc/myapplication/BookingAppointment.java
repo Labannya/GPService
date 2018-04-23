@@ -18,7 +18,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class BookingAppointment extends AppCompatActivity {
 
@@ -47,8 +50,9 @@ public class BookingAppointment extends AppCompatActivity {
 
 
         db= new DatabaseHelper(this);
-        final Cursor pending_data= db.getPendingAppointment(uname);
+
         final Cursor chooseDate=db.chooseAvailableAppointment(textV.getText(),textTime.getText());
+
 
 
 
@@ -69,6 +73,7 @@ public class BookingAppointment extends AppCompatActivity {
 //                Intent i= new Intent(BookingAppointment.this,ViewAvailableDate.class);
 //                i.putExtra("Username",uname);
 //                startActivity(i);
+                textTime.setText("");
                 cal= Calendar.getInstance();
                 int year= cal.get(Calendar.YEAR);
                 int month= cal.get(Calendar.MONTH);
@@ -87,10 +92,20 @@ public class BookingAppointment extends AppCompatActivity {
                 String date;
                 month=month+1;
                 if(month<10){
-                    date = String.valueOf(day) + "/" + String.valueOf(0)+String.valueOf(month) + "/" + String.valueOf(year);
+                    if(day<10){
+                        date = String.valueOf(0)+String.valueOf(day) + "/" + String.valueOf(0) + String.valueOf(month) + "/" + String.valueOf(year);
+                    }
+                    else {
+                        date = String.valueOf(day) + "/" + String.valueOf(0) + String.valueOf(month) + "/" + String.valueOf(year);
+                    }
                 }
                 else {
-                     date = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+                    if(day<10) {
+                        date = String.valueOf(0)+String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+                    }
+                    else{
+                        date = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+                    }
                 }
                 textV.setText(date);
             }
@@ -101,18 +116,84 @@ public class BookingAppointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("date is "+textV.getText());
-                if(textV.getText().equals("")){
+                  if(textV.getText().equals("")){
                     Toast toastView = Toast.makeText(BookingAppointment.this,"Please choose date first",Toast.LENGTH_SHORT);
                     toastView.show();
                 }
 
-                else{
-                    System.out.println("date is in else");
-                    Intent i= new Intent(BookingAppointment.this,ViewAvailableTime.class);
-                    i.putExtra("Time", textV.getText());
-                    i.putExtra("Username",uname);
-                    startActivity(i);
-                }
+                else {
+                    int day = Integer.parseInt(db.dayCount((String) textV.getText()));
+                    //chooseTime.moveToFirst();
+                      final Cursor chooseTime=db.getListTime(textV.getText(),uname);
+                      int count =chooseTime.getCount();
+                      System.out.println("Count is "+count+" for the date "+textV.getText()+" for the username "+uname);
+
+                    System.out.println("day count is "+day);
+                    try {
+                        if (day <= 30 && day>0) {
+
+
+                            if (db.date((String) textV.getText()).equalsIgnoreCase("Saturday") || db.date((String) textV.getText()).equalsIgnoreCase("Sunday")) {
+                                Toast toastView = Toast.makeText(BookingAppointment.this, "You can't select a date for weekend", Toast.LENGTH_SHORT);
+                                toastView.show();
+                            }  else if (chooseTime.getCount() == 0) {
+                                Toast toastView = Toast.makeText(BookingAppointment.this, "There is no available appointment for your resposible doctor. Please contact emergency service or choose another date.", Toast.LENGTH_SHORT);
+                                toastView.show();
+                            }
+
+                            else {
+                                System.out.println("date is in else");
+                                Intent i = new Intent(BookingAppointment.this, ViewAvailableTime.class);
+                                i.putExtra("Time", textV.getText());
+                                i.putExtra("Username", uname);
+                                startActivity(i);
+                            }
+                        }
+
+                        else if (new SimpleDateFormat("dd/MM/yyyy").parse((String) textV.getText()).before(new Date())) {
+                            Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment on this date as it is previous date", Toast.LENGTH_SHORT);
+                            toastView.show();
+                        }
+
+                        else if (day > 30) {
+                            Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment more than one month", Toast.LENGTH_SHORT);
+                            toastView.show();
+
+                        }
+
+
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+//                    try {
+//                        if (new SimpleDateFormat("dd/MM/yyyy").parse((String) textV.getText()).before(new Date())) {
+//                            Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment on this date as it is previous date", Toast.LENGTH_SHORT);
+//                            toastView.show();
+//                        }
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//                    if (chooseTime.getCount() == 0) {
+//                        Toast toastView = Toast.makeText(BookingAppointment.this, "There is no available appointment for your resposible doctor. Please contact emergency service or choose another date.", Toast.LENGTH_SHORT);
+//                        toastView.show();
+//                    } else if (day > 30) {
+//                        Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment more than one month", Toast.LENGTH_SHORT);
+//                        toastView.show();
+//
+//                    }
+//                    else {
+//                        System.out.println("date is in else");
+//                        Intent i = new Intent(BookingAppointment.this, ViewAvailableTime.class);
+//                        i.putExtra("Time", textV.getText());
+//                        i.putExtra("Username", uname);
+//                        startActivity(i);
+//                    }
 //
 //                cal= Calendar.getInstance();
 //                int hour= cal.get(Calendar.HOUR_OF_DAY);
@@ -127,7 +208,7 @@ public class BookingAppointment extends AppCompatActivity {
 //                },hour,minute,true);
 //
 //                time_dialog.show();
-
+                }
 
 
             }
@@ -137,6 +218,7 @@ public class BookingAppointment extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
+                final Cursor pending_data= db.getPendingAppointment(uname);
                 String described_issue=issue.getText().toString();
                 int day= Integer.parseInt(db.dayCount((String) textV.getText()));
                 chooseDate.moveToFirst();
