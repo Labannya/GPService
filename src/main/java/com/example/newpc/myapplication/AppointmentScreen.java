@@ -106,7 +106,7 @@ public class AppointmentScreen extends AppCompatActivity {
                         }
                     } else {
                         while (data.moveToNext()) {
-                            System.out.println("1st String is " + data.getString(0));
+
                             if (data.getString(0) == null) {
                                 Toast toastView = Toast.makeText(AppointmentScreen.this, "You have no pending appointment to view.", Toast.LENGTH_SHORT);
                                 toastView.show();
@@ -144,6 +144,18 @@ public class AppointmentScreen extends AppCompatActivity {
                             startActivity(i);
                         }
                     }
+            }
+        });
+
+
+
+        Button back=(Button)findViewById(R.id.bck);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(AppointmentScreen.this,HomeScreen.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
             }
         });
 

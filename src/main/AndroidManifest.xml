@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="GP Service"
+        android:label="Surgery Assistant"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -16,8 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarmReceiver"/>
-        <receiver android:name=".AppointmentAlarmReceiver"/>
+
+        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AppointmentAlarmReceiver" />
+
         <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +44,9 @@
         <activity android:name=".PatientInfoEdit" />
         <activity android:name=".RegularAlarmActivity" />
         <activity android:name=".AppointmentAlarmActivity" />
-        <activity android:name=".AlarmActivity"></activity>
+        <activity android:name=".AlarmActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".ContactUsActivity"></activity>
     </application>
-
 
 </manifest>

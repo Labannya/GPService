@@ -36,6 +36,7 @@ public class AppointmentAlarmActivity extends AppCompatActivity implements TimeP
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_alarm);
+        final String uname= getIntent().getStringExtra("Username");
         db= new DatabaseHelper(this);
 
         Button btn_timeset=(Button)findViewById(R.id.set);
@@ -89,15 +90,25 @@ public class AppointmentAlarmActivity extends AppCompatActivity implements TimeP
             @Override
             public void onClick(View view) {
                 cancelAlarm();
-                db.deleteAppointmentAlarmTable();
+                db.deleteAppointmentAlarmTable(uname);
             }
         });
 
 
+        Button btn_bck=(Button)findViewById(R.id.bck);
+        btn_bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(AppointmentAlarmActivity.this,HomeScreen.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
+
         btn_timeset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deleteAppointmentAlarmTable();
+                db.deleteAppointmentAlarmTable(uname);
                 if(text_remind.getText().length()==0 && text_date.getText().length()!=0){
                     Toast toastView = Toast.makeText(AppointmentAlarmActivity.this, "Please remind time first", Toast.LENGTH_SHORT);
                     toastView.show();
@@ -131,7 +142,7 @@ public class AppointmentAlarmActivity extends AppCompatActivity implements TimeP
                             int size=snooze_text.length();
                             int snooze_time=Integer.parseInt(snooze_text);
                             System.out.println("Time and length is "+snooze_time+" "+size);
-                            db.insertAppointmentAlarmTable(""+text_remind.getText(),""+text_date.getText());
+                            db.insertAppointmentAlarmTable(""+text_remind.getText(),""+text_date.getText(),uname);
                             android.support.v4.app.DialogFragment pick = new TimePickerFragment();
                             pick.show(getSupportFragmentManager(),"time picker");
                         }

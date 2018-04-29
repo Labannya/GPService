@@ -18,7 +18,6 @@ public class MActivity extends AppCompatActivity {
         mydb =new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_m);
-       // setContentView();
         SQLiteDatabase database = mydb.getWritableDatabase();
 
         Button button1 = (Button) findViewById(R.id.button);
@@ -35,7 +34,7 @@ public class MActivity extends AppCompatActivity {
                 String strPass= b.getText().toString();
                 String passwd= String.valueOf(mydb.searchCredentials(str));
 
-                System.out.println("helooooo "+str);
+
 
                 if(view.getId()==R.id.button) {
 
@@ -49,6 +48,7 @@ public class MActivity extends AppCompatActivity {
                     }
 
                     else{
+                        //get notification for the invalid credentials to login
                         Toast toastView = Toast.makeText(MActivity.this,"Credentials don't match",Toast.LENGTH_SHORT);
                         toastView.show();
                     }

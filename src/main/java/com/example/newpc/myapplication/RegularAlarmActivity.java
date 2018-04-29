@@ -28,8 +28,10 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
     DatabaseHelper db;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final String uname= getIntent().getStringExtra("Username");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regular_alarm);
 
@@ -51,21 +53,21 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
         btn_timeset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //text_snooze.setText("1");
-                db.deleteRegularAlarmTable();
-                System.out.println("Helooooooo"+text_snooze.getText()+"Hi"+text_snooze.getText().toString().length());
+
+                db.deleteRegularAlarmTable(uname);
+
                 if(text_snooze.getText().length()==0 || text_medicine.getText().length()==0){
                     Toast toastView = Toast.makeText(RegularAlarmActivity.this, "Please choose reminder time", Toast.LENGTH_SHORT);
                     toastView.show();
                 }
 
                 else{
-                    //System.out.print(""+text_snooze.getText());
+
                     String snooze_text=""+text_snooze.getText();
                     int size=snooze_text.length();
                     int snooze_time=Integer.parseInt(snooze_text);
                     System.out.println("Time and length is "+snooze_time+" "+size);
-                   db.insertRegularAlarmTable(""+text_snooze.getText(),""+text_medicine.getText());
+                   db.insertRegularAlarmTable(""+text_snooze.getText(),""+text_medicine.getText(),uname);
                     android.support.v4.app.DialogFragment pick = new TimePickerFragment();
                     pick.show(getSupportFragmentManager(),"time picker");
                 }
@@ -77,12 +79,20 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
             @Override
             public void onClick(View view) {
                 cancelAlarm();
-                db.deleteRegularAlarmTable();
+                db.deleteRegularAlarmTable(uname);
             }
         });
 
 
-
+        Button btn_bck=(Button)findViewById(R.id.bck);
+        btn_bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(RegularAlarmActivity.this,HomeScreen.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
     }
 
     public void startAlarm(Calendar c){
@@ -128,6 +138,8 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
         Cursor data=db.getSnooze();
         data.moveToFirst();
         reminderNote(c,i,i1,Integer.parseInt(data.getString(0)));
+
+
     }
 
 

@@ -51,5 +51,16 @@ public class PatientInfo extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        Button back=(Button)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(PatientInfo.this,Record.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
     }
 }

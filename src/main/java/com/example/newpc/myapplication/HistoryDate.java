@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,31 +43,8 @@ public class HistoryDate extends AppCompatActivity {
         if (data.getCount() == 0) {
             Toast toastView = Toast.makeText(HistoryDate.this, "No history available", Toast.LENGTH_SHORT);
             toastView.show();
-        } else if (data.getCount() == 1) {
-            System.out.println("Heloooo 1" + data.getString(0));
-            theList.add(data.getString(0));
-            ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-            list_date.setAdapter(adapter);
-            list_date.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Cursor p_date = db.getPatientPrescription(uname, theList.get(position));
-
-                    //Toast toastView = Toast.makeText(PrescriptionDate.this, "You have no prescription on this date. May be you just visited or missed the appointment", Toast.LENGTH_SHORT);
-                    //toastView.show();
-
-                    System.out.println("Item is " + theList.get(position));
-                    Intent i = new Intent(HistoryDate.this, ViewPrescription.class);
-
-                    i.putExtra("Date", theList.get(position));
-                    i.putExtra("Username", uname);
-
-                    startActivity(i);
-                }
-
-
-            });
         }
+
            else if (data.getCount() > 0) {
 
        // else{
@@ -111,6 +89,16 @@ public class HistoryDate extends AppCompatActivity {
             }
             //}
         }
+
+        Button btn_bck=(Button)findViewById(R.id.bck);
+        btn_bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(HistoryDate.this,Record.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
 
     }
 }

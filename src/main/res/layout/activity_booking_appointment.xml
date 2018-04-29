@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.newpc.myapplication.BookingAppointment">
+    tools:context="com.example.newpc.myapplication.BookingAppointment"
+    android:background="@drawable/pink">>
 
     <Button
         android:id="@+id/date"
@@ -20,9 +21,8 @@
         android:id="@+id/time"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/date_value"
         android:layout_alignStart="@+id/date"
-        android:layout_marginBottom="44dp"
+        android:layout_below="@+id/date"
         android:text="Select Available time" />
 
     <TextView
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/edit"
         android:layout_alignStart="@+id/time_value"
-        android:text="Cancel" />
+        android:text="Back" />
 
     <TextView
         android:id="@+id/uname"
@@ -97,4 +97,5 @@
         android:layout_marginBottom="34dp"
         android:ems="10"
         android:hint="Regarding" />
+
 </RelativeLayout>

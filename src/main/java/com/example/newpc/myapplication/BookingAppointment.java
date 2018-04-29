@@ -42,9 +42,6 @@ public class BookingAppointment extends AppCompatActivity {
 
         final TextView textV= (TextView)findViewById(R.id.date_value);
         textV.setText(date);
-
-
-        //final String time= getIntent().getStringExtra("Time");
         final TextView textTime= (TextView)findViewById(R.id.time_value);
         textTime.setText(time);
 
@@ -55,9 +52,6 @@ public class BookingAppointment extends AppCompatActivity {
 
 
 
-
-        String timeText= (String) textTime.getText();
-        String dateText= (String) textV.getText();
 
         Button btn_date = (Button)findViewById(R.id.date);
         Button btn_time = (Button)findViewById(R.id.time);
@@ -70,9 +64,6 @@ public class BookingAppointment extends AppCompatActivity {
         btn_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i= new Intent(BookingAppointment.this,ViewAvailableDate.class);
-//                i.putExtra("Username",uname);
-//                startActivity(i);
                 textTime.setText("");
                 cal= Calendar.getInstance();
                 int year= cal.get(Calendar.YEAR);
@@ -123,12 +114,8 @@ public class BookingAppointment extends AppCompatActivity {
 
                 else {
                     int day = Integer.parseInt(db.dayCount((String) textV.getText()));
-                    //chooseTime.moveToFirst();
                       final Cursor chooseTime=db.getListTime(textV.getText(),uname);
                       int count =chooseTime.getCount();
-                      System.out.println("Count is "+count+" for the date "+textV.getText()+" for the username "+uname);
-
-                    System.out.println("day count is "+day);
                     try {
                         if (day <= 30 && day>0) {
 
@@ -142,7 +129,7 @@ public class BookingAppointment extends AppCompatActivity {
                             }
 
                             else {
-                                System.out.println("date is in else");
+
                                 Intent i = new Intent(BookingAppointment.this, ViewAvailableTime.class);
                                 i.putExtra("Time", textV.getText());
                                 i.putExtra("Username", uname);
@@ -168,46 +155,6 @@ public class BookingAppointment extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-
-//                    try {
-//                        if (new SimpleDateFormat("dd/MM/yyyy").parse((String) textV.getText()).before(new Date())) {
-//                            Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment on this date as it is previous date", Toast.LENGTH_SHORT);
-//                            toastView.show();
-//                        }
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//
-//                    if (chooseTime.getCount() == 0) {
-//                        Toast toastView = Toast.makeText(BookingAppointment.this, "There is no available appointment for your resposible doctor. Please contact emergency service or choose another date.", Toast.LENGTH_SHORT);
-//                        toastView.show();
-//                    } else if (day > 30) {
-//                        Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book an appointment more than one month", Toast.LENGTH_SHORT);
-//                        toastView.show();
-//
-//                    }
-//                    else {
-//                        System.out.println("date is in else");
-//                        Intent i = new Intent(BookingAppointment.this, ViewAvailableTime.class);
-//                        i.putExtra("Time", textV.getText());
-//                        i.putExtra("Username", uname);
-//                        startActivity(i);
-//                    }
-//
-//                cal= Calendar.getInstance();
-//                int hour= cal.get(Calendar.HOUR_OF_DAY);
-//                int minute= cal.get(Calendar.MINUTE);
-//
-//
-//                TimePickerDialog time_dialog=new TimePickerDialog(BookingAppointment.this, new TimePickerDialog.OnTimeSetListener() {
-//                    @Override
-//                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-//                        textTime.setText(hour+":"+minute+" "+selectedTimeFormat(hour));
-//                    }
-//                },hour,minute,true);
-//
-//                time_dialog.show();
                 }
 
 
@@ -235,13 +182,6 @@ public class BookingAppointment extends AppCompatActivity {
                         i.putExtra("Username",uname);
                         startActivity(i);
                     }
-//                    else if(chooseDate.getCount()==1){
-//                        System.out.println("No data so insert");
-//                        if(pending_data.getCount()==0){
-//                            System.out.println("patient has no data");
-//                            Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book this slot.This is already booked", Toast.LENGTH_SHORT);
-//                            toastView.show();
-//                        }
 
                         else if(pending_data.getCount() ==1){
                             System.out.println("update patient data");
@@ -257,8 +197,6 @@ public class BookingAppointment extends AppCompatActivity {
                            i.putExtra("Username",uname);
                            startActivity(i);
 
-
-                            // && chooseDate.getString(0).equals(textV.getText()) && db.getHour(chooseDate.getString(1)).equals(db.getHour((String) textTime.getText()))
                         }
                     }
 
@@ -269,81 +207,6 @@ public class BookingAppointment extends AppCompatActivity {
                     toastView.show();
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//                if(chooseDate.getCount()==0){
-//                    if(day <=30){
-////                        if(chooseDate.getString(0).equals(textV.getText()) && db.getHour(chooseDate.getString(1)).equals(db.getHour((String) textTime.getText()))){
-////                            Toast toastView = Toast.makeText(BookingAppointment.this, "Slot is already booked", Toast.LENGTH_SHORT);
-////                            toastView.show();
-////                        }
-//
-//                      //  else {
-//                        System.out.println("Hour is "+db.getHour((String) textTime.getText()));
-//                        if(db.getHour((String) textTime.getText())<8 || db.getHour((String) textTime.getText())>19) {
-//
-//                            Toast toastView = Toast.makeText(BookingAppointment.this, "You have to select slot between 8AM to 7PM", Toast.LENGTH_SHORT);
-//                            toastView.show();
-//
-//                        }
-//
-//                        else{
-//                            if(db.getMinute((String) textTime.getText())>0){
-//                                Toast toastView = Toast.makeText(BookingAppointment.this, "Please select absolute time. For example, 12:00 pm", Toast.LENGTH_SHORT);
-//                                toastView.show();
-//                            }
-//                            else if(db.getMinute((String) textTime.getText())==0) {
-//                                if(chooseDate.getCount()==0) {
-//                                    db.insertPendingAppointment(uname, textV.getText(), textTime.getText(), described_issue);
-//                                    db.deleteAvaiableAppointment(textV.getText(), textTime.getText());
-//                                    Toast toastView = Toast.makeText(BookingAppointment.this, "Your appointment has been booked successfully", Toast.LENGTH_SHORT);
-//                                    toastView.show();
-//                                }
-//                                else if(chooseDate.getCount()==1){
-//                                    if(pending_data.getCount()==0){
-//                                        Toast toastView = Toast.makeText(BookingAppointment.this, "You can't book this slot.This is already booked", Toast.LENGTH_SHORT);
-//                                        toastView.show();
-//                                    }
-//
-//                                    else if(pending_data.getCount() ==1){
-//                                        db.updatePendingAppointment(uname,textV.getText(),textTime.getText(),described_issue);
-//
-//                                        // && chooseDate.getString(0).equals(textV.getText()) && db.getHour(chooseDate.getString(1)).equals(db.getHour((String) textTime.getText()))
-//                                    }
-//                                }
-//                            }
-//                        }
-//                       // }
-//                    }
-//
-//                    else {
-//                        Toast toastView = Toast.makeText(BookingAppointment.this, "You cant select appointment after 1 month", Toast.LENGTH_SHORT);
-//                        toastView.show();
-//                    }
-//                }
-
-
-
-
             }
         });
 
@@ -352,35 +215,17 @@ public class BookingAppointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(BookingAppointment.this,AppointmentScreen.class);
-                //putExtraData("Username",uname);
                 i.putExtra("Username",uname);
                 startActivity(i);
             }
         });
 
 
+
+
+
+
     }
 
-    public String selectedTimeFormat(int hour){
-        String format;
-        if(hour==0){
-            hour +=12;
-            format="AM";
-        }
 
-        else if(hour==12){
-            //hour =0;
-            format="PM";
-        }
-
-        else if(hour>12){
-            hour -=12;
-            format="PM";
-        }
-        else{
-            format="AM";
-        }
-
-        return format;
-    }
 }

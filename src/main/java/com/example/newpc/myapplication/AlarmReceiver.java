@@ -12,8 +12,6 @@ import android.support.v4.app.NotificationCompat;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    DatabaseHelper db;
-
     @Override
     public  void onReceive(Context context, Intent intent) {
 

@@ -16,7 +16,7 @@ public class Welcome extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-        String uname= getIntent().getStringExtra("Username");
+        final String uname= getIntent().getStringExtra("Username");
         final TextView textV= (TextView)findViewById(R.id.username);
         textV.setText(uname);
 
@@ -42,6 +42,29 @@ public class Welcome extends Activity {
                 startActivity(i);
             }
 
+        });
+
+
+        Button button_us= (Button)findViewById(R.id.abtUs);
+        button_us.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Welcome.this, AboutUsActivity.class);
+                i.putExtra("Username",textV.getText());
+                startActivity(i);
+            }
+
+        });
+
+
+        Button button_out= (Button)findViewById(R.id.logout);
+        button_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Welcome.this,MActivity.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
         });
 
 

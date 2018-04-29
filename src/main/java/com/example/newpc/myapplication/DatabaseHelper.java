@@ -201,33 +201,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //return data;
     }
 
-    public void deleteRegularAlarmTable(){
+    public void deleteRegularAlarmTable(String uname){
         SQLiteDatabase db= this.getWritableDatabase();
 
-        db.execSQL("Delete from "+RegularAlarm.Table_name);
+        db.execSQL("Delete from "+RegularAlarm.Table_name+" where Username='"+uname+"'");
         //return data;
     }
 
 
-    public void deleteAppointmentAlarmTable(){
+    public void deleteAppointmentAlarmTable(String uname){
         SQLiteDatabase db= this.getWritableDatabase();
 
-        db.execSQL("Delete from "+AppointmentAlarm.Table_name);
+        db.execSQL("Delete from "+AppointmentAlarm.Table_name+" where Username='"+uname+"'");
         //return data;
     }
 
-    public void insertRegularAlarmTable(String time,String medicine){
+    public void insertRegularAlarmTable(String time,String medicine,String uname){
         SQLiteDatabase db= this.getWritableDatabase();
 
-        db.execSQL("Insert into "+RegularAlarm.Table_name+" Values ('"+time+"' ,"+"'"+medicine+"')");
+        db.execSQL("Insert into "+RegularAlarm.Table_name+" Values ('"+time+"' ,"+"'"+medicine+"' ,'"+uname+"'"+")");
         //return data;
 
     }
 
-    public void insertAppointmentAlarmTable(String time,String date){
+    public void insertAppointmentAlarmTable(String time,String date,String uname){
         SQLiteDatabase db= this.getWritableDatabase();
 
-        db.execSQL("Insert into "+AppointmentAlarm.Table_name+" Values ('"+time+"' ,"+"'"+date+"')");
+        db.execSQL("Insert into "+AppointmentAlarm.Table_name+" Values ('"+time+"' ,"+"'"+date+"' ,'"+uname+"')");
         //return data;
 
     }
@@ -334,24 +334,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         month=month-1;
         int day=Integer.parseInt(parts[0]);
         Date today = new Date();
-        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");//String currentDate=format.format(today);  String nextDate=format.format(futureDate);
 
         Calendar myCalender = Calendar.getInstance();
         myCalender.set(year,month,day);
 
         Date futureDate=myCalender.getTime();
 
-        String currentDate=format.format(today);
-        String nextDate=format.format(futureDate);
-
         long days=(futureDate.getTime()-today.getTime())/86400000;
 
         String daysCount=String.valueOf(days);
 
         return daysCount;
-
-
     }
+    public String getDiffYears(Date first, Date last) {
+
+        Calendar a = getCalendar(first);
+        Calendar b = getCalendar(last);
+        int difference = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+        if (a.get(Calendar.DAY_OF_YEAR) > b.get(Calendar.DAY_OF_YEAR)) {
+            difference--;
+        }
+        String year_difference=String.valueOf(difference);
+        return year_difference;
+    }
+    public Calendar getCalendar(Date date) {
+        Calendar cal = Calendar.getInstance(Locale.UK);
+        cal.setTime(date);
+        return cal;
+    }
+
+
+
 
     public int getHour(String time){
         String[] parts = time.split(":");
@@ -372,22 +386,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public String getDiffYears(Date first, Date last) {
-
-        Calendar a = getCalendar(first);
-        Calendar b = getCalendar(last);
-        int difference = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
-        if (a.get(Calendar.DAY_OF_YEAR) > b.get(Calendar.DAY_OF_YEAR)) {
-            difference--;
-        }
-        String year_difference=String.valueOf(difference);
-        return year_difference;
-    }
-
-    public Calendar getCalendar(Date date) {
-        Calendar cal = Calendar.getInstance(Locale.UK);
-        cal.setTime(date);
-        return cal;
-    }
 
 }

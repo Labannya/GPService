@@ -4,16 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.newpc.myapplication.HistoryDate">
+    tools:context="com.example.newpc.myapplication.HistoryDate"
+    android:background="@drawable/pink">
 
     <ListView
         android:id="@+id/historyDate_list"
         android:layout_width="231dp"
-        android:layout_height="423dp"
+        android:layout_height="400dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="21dp"
         tools:layout_editor_absoluteX="77dp"
         tools:layout_editor_absoluteY="44dp" />
+
+    <Button
+        android:id="@+id/bck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/historyDate_list"
+        android:layout_below="@+id/historyDate_list"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="19dp"
+        android:text="Back" />
 
 </RelativeLayout>

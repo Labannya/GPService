@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.newpc.myapplication.RegularAlarmActivity">
+    tools:context="com.example.newpc.myapplication.RegularAlarmActivity"
+    android:background="@drawable/pink">
 
     <TextView
         android:id="@+id/remind"
@@ -85,4 +86,14 @@
         android:layout_toEndOf="@+id/setbutton"
         android:ems="10"
         android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/bck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cancel"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/textView21"
+        android:text="Home"
+        android:textSize="20sp" />
 </RelativeLayout>

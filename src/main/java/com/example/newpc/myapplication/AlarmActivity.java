@@ -12,12 +12,14 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
+        final String uname= getIntent().getStringExtra("Username");
 
         Button btn_regremin= (Button)findViewById(R.id.regremin);
         btn_regremin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(AlarmActivity.this,RegularAlarmActivity.class);
+                i.putExtra("Username",uname);
                 startActivity(i);
             }
         });
@@ -27,6 +29,18 @@ public class AlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(AlarmActivity.this,AppointmentAlarmActivity.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
+
+
+        Button back=(Button)findViewById(R.id.bck);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(AlarmActivity.this,HomeScreen.class);
+                i.putExtra("Username",uname);
                 startActivity(i);
             }
         });

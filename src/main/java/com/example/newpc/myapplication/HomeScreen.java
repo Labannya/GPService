@@ -38,6 +38,18 @@ public class HomeScreen extends AppCompatActivity {
 
 
 
+        Button back=(Button)findViewById(R.id.bck);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(HomeScreen.this,Welcome.class);
+                i.putExtra("Username",uname);
+                startActivity(i);
+            }
+        });
+
+
+
         Button button3= (Button)findViewById(R.id.apntmnt);
         button3.setOnClickListener(new View.OnClickListener(){
             @Override
