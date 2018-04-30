@@ -44,6 +44,7 @@
         android:layout_marginTop="11dp"
         android:layout_toEndOf="@+id/textView"
         android:textSize="20sp"
+        android:textStyle="bold"
         tools:text="@string/day_value" />
 
     <TextView
@@ -63,6 +64,7 @@
         android:layout_alignStart="@+id/date_value"
         android:layout_alignTop="@+id/textView3"
         android:textSize="20sp"
+        android:textStyle="bold"
         tools:text="@string/time_value" />
 
     <Button

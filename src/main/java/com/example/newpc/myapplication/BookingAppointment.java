@@ -165,15 +165,19 @@ public class BookingAppointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Cursor pending_data= db.getPendingAppointment(uname);
+                final Cursor resposible_doctor= db.getDoctor(uname);
                 String described_issue=issue.getText().toString();
                 int day= Integer.parseInt(db.dayCount((String) textV.getText()));
                 chooseDate.moveToFirst();
                 pending_data.moveToFirst();
+                resposible_doctor.moveToFirst();
 
                 if(day <=30){
                     if(pending_data.getCount()==0){
                         System.out.println("No data so insert");
-                        db.insertPendingAppointment(uname, textV.getText(), textTime.getText(), described_issue);
+                       // db.insertPendingAppointment(uname, textV.getText(), textTime.getText(), described_issue);
+                        System.out.println("Doctor is "+resposible_doctor.getString(0));
+                        db.insertAllPendingAppointment(uname, textV.getText(), textTime.getText(), described_issue,resposible_doctor.getString(0));
                         db.deleteAvaiableAppointment(textV.getText(), textTime.getText());
                         Toast toastView = Toast.makeText(BookingAppointment.this, "Your appointment has been booked successfully", Toast.LENGTH_SHORT);
                         toastView.show();

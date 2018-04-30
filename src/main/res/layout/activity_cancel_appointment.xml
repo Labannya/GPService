@@ -55,7 +55,8 @@
         android:layout_alignTop="@+id/textView10"
         android:layout_marginStart="48dp"
         android:layout_toEndOf="@+id/textView10"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dayView"
@@ -63,7 +64,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dateView"
         android:layout_alignTop="@+id/textView11"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/timeView"
@@ -71,7 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dayView"
         android:layout_alignTop="@+id/textView12"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/cancel"

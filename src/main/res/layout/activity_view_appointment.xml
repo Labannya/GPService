@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/view_date"
         android:layout_alignBottom="@+id/view_date"
         android:layout_alignStart="@+id/textView6"
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/textView6"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_alignBaseline="@+id/view_day"
         android:layout_alignBottom="@+id/view_day"
         android:layout_alignStart="@+id/textView8"
@@ -45,10 +45,10 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/chng"
-        android:layout_alignTop="@+id/view_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_below="@+id/view_day"
         android:text="Time"
         android:textSize="25sp"
         tools:layout_editor_absoluteX="44dp"
@@ -68,24 +68,23 @@
 
     <TextView
         android:id="@+id/view_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_alignStart="@+id/view_date"
         android:layout_below="@+id/view_date"
-        android:layout_marginTop="36dp"
         android:textSize="20sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="194dp"
         tools:layout_editor_absoluteY="154dp" />
 
     <TextView
         android:id="@+id/view_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/chng"
-        android:layout_below="@+id/textView6"
-        android:layout_marginEnd="33dp"
-        android:layout_marginTop="49dp"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/view_day"
+        android:layout_alignTop="@+id/textView8"
         android:textSize="20sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="194dp"
         tools:layout_editor_absoluteY="230dp" />
 
@@ -93,10 +92,11 @@
         android:id="@+id/view_date"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="23dp"
+        android:layout_marginEnd="12dp"
         android:textSize="20sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="194dp"
         tools:layout_editor_absoluteY="329dp" />
 
@@ -111,4 +111,42 @@
         android:text="Go Back"
         tools:layout_editor_absoluteX="255dp"
         tools:layout_editor_absoluteY="424dp" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/chng"
+        android:layout_below="@+id/view_time"
+        android:text="Regarding"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_below="@+id/textView23"
+        android:layout_marginTop="30dp"
+        android:text="Doctor"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/view_regarding"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView23"
+        android:layout_alignBottom="@+id/textView23"
+        android:layout_alignStart="@+id/view_time"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/view_doctor"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/view_regarding"
+        android:layout_alignTop="@+id/textView35"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>

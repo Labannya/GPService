@@ -193,6 +193,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+
+    public void insertAllPendingAppointment(String username, CharSequence date, CharSequence time, String cause, String doctor){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Insert into "+Appointment.Table_name+" Values ("+"'"+username+"'"+","+"'"+date+"'"+","+"'"+time+"'"+","+"'"+cause+"'"+","+null+")",null);
+        db.execSQL("Insert into "+Appointment.Table_name+" Values ("+"'"+username+"'"+","+"'"+date+"'"+","+"'"+time+"'"+","+"'"+cause+"'"+",'"+doctor+"')");
+
+    }
+
+
+    public Cursor getDoctor(String username){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor data=db.rawQuery("Select Doctor_name from "+PatientDetails.Table_name+" where Username='"+username+"'",null);
+        return data;
+
+    }
+
+
+
     public void deleteAvaiableAppointment(CharSequence date, CharSequence time){
         SQLiteDatabase db= this.getWritableDatabase();
         Cursor data=db.rawQuery("Delete from "+Availability.Table_name+" Where Available_day='"+date+"' and Available_time='"+time+"'",null);
@@ -261,7 +279,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getPendingAppointment(String username){
         SQLiteDatabase db= this.getWritableDatabase();
-        Cursor data=db.rawQuery("Select Pending_appointment, Time from "+Appointment.Table_name+" Where Username='"+username+"'",null);
+        Cursor data=db.rawQuery("Select Pending_appointment, Time, Regarding, Doctor from "+Appointment.Table_name+" Where Username='"+username+"'",null);
         return data;
     }
 

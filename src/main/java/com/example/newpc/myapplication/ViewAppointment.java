@@ -22,6 +22,8 @@ public class ViewAppointment extends AppCompatActivity {
         TextView date_view=(TextView)findViewById(R.id.view_date);
         TextView time_view=(TextView)findViewById(R.id.view_time);
         TextView day_view=(TextView)findViewById(R.id.view_day);
+        TextView regarding_view=(TextView)findViewById(R.id.view_regarding);
+        TextView doctor_view=(TextView)findViewById(R.id.view_doctor);
 
 
 
@@ -41,6 +43,8 @@ public class ViewAppointment extends AppCompatActivity {
 
             date_view.setText(data.getString(0));
             time_view.setText(data.getString(1));
+            regarding_view.setText(data.getString(2));
+            doctor_view.setText(data.getString(3));
             // }
         }
 

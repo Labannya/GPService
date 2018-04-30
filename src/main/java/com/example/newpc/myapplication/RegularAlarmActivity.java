@@ -117,13 +117,17 @@ public class RegularAlarmActivity extends AppCompatActivity implements TimePicke
 
     public  void cancelAlarm(){
         TextView textTime=(TextView)findViewById(R.id.alarmset);
+        EditText text_snooze=(EditText) findViewById(R.id.remindmin);
+        EditText text_medicine=(EditText) findViewById(R.id.medicine);
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i= new Intent(this,AlarmReceiver.class);
         PendingIntent pending=PendingIntent.getBroadcast(this,1,i,0);
 
         manager.cancel(pending);
 
-        textTime.setText("No Appointment");
+        textTime.setText("");
+        text_snooze.setText("");
+        text_medicine.setText("");
 
     }
 

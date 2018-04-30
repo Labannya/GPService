@@ -27,7 +27,7 @@ public class ViewPrescription extends AppCompatActivity {
 
         TextView symptom_view=(TextView)findViewById(R.id.symptom);
         TextView medication_view=(TextView)findViewById(R.id.medication);
-        TextView doctor_view=(TextView)findViewById(R.id.doctor);
+        TextView doctor_view=(TextView)findViewById(R.id.view_doctor);
 
         TextView date_view=(TextView)findViewById(R.id.date);
 

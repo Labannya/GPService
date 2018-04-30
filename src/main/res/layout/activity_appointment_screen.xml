@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:layout_alignStart="@+id/cancel"
         android:layout_below="@+id/booking"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="47dp"
         android:text="View Appointment"
         tools:layout_editor_absoluteX="82dp"
         tools:layout_editor_absoluteY="170dp" />
@@ -33,9 +33,9 @@
         android:id="@+id/cancel"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/bck"
+        android:layout_below="@+id/view"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp"
+        android:layout_marginTop="60dp"
         android:text="Cancel Appointment"
         tools:layout_editor_absoluteX="82dp"
         tools:layout_editor_absoluteY="300dp" />
