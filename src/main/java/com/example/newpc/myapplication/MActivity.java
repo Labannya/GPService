@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.R.*;
+
+import com.example.newpc.myapplication.helper.DatabaseHelper;
 
 public class MActivity extends AppCompatActivity {
 

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.newpc.myapplication.helper.DatabaseHelper;
+
 public class HomeScreen extends AppCompatActivity {
     DatabaseHelper db;
 

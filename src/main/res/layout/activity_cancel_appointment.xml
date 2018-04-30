@@ -50,27 +50,28 @@
 
     <TextView
         android:id="@+id/dateView"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView10"
         android:layout_marginStart="48dp"
         android:layout_toEndOf="@+id/textView10"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/dayView"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dateView"
         android:layout_alignTop="@+id/textView11"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/timeView"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dayView"
-        android:layout_alignTop="@+id/textView12" />
+        android:layout_alignTop="@+id/textView12"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/cancel"

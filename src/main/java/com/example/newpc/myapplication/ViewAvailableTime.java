@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.newpc.myapplication.helper.DatabaseHelper;
+
 import java.util.ArrayList;
 
 public class ViewAvailableTime extends AppCompatActivity {

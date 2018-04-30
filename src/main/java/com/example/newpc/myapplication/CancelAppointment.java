@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.newpc.myapplication.helper.DatabaseHelper;
+
 public class CancelAppointment extends AppCompatActivity {
 
     DatabaseHelper db;

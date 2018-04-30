@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReceiver" />
-        <receiver android:name=".AppointmentAlarmReceiver" />
+        <receiver android:name=".helper.AlarmReceiver" />
+        <receiver android:name=".helper.AppointmentAlarmReceiver" />
 
         <activity android:name=".Welcome">
             <intent-filter>
