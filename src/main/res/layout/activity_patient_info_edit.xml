@@ -88,7 +88,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/number"
         android:ems="10"
-        android:inputType="text|textPersonName" />
+        android:inputType="text|textPersonName"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/emailTxt"
@@ -97,7 +98,8 @@
         android:layout_alignStart="@+id/numTxt"
         android:layout_alignTop="@+id/emai"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/adrsTxt"
@@ -106,7 +108,8 @@
         android:layout_alignTop="@+id/address"
         android:layout_toEndOf="@+id/address"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nmTxt"
@@ -114,7 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/numTxt"
         android:layout_alignTop="@+id/name"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dobTxt"
@@ -122,7 +126,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/nmTxt"
         android:layout_alignTop="@+id/dob"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/ageTxt"
@@ -130,7 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dobTxt"
         android:layout_alignTop="@+id/age"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/save"

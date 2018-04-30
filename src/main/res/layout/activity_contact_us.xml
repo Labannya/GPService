@@ -68,7 +68,8 @@
         android:layout_marginStart="26dp"
         android:layout_toEndOf="@+id/textView22"
         android:text="X Surgery"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView31"
@@ -77,7 +78,8 @@
         android:layout_above="@+id/textView25"
         android:layout_toEndOf="@+id/textView25"
         android:text="25, Y Road, Z"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView32"
@@ -86,7 +88,8 @@
         android:layout_alignTop="@+id/textView25"
         android:layout_toEndOf="@+id/textView22"
         android:text="1234567890"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView33"
@@ -97,7 +100,8 @@
         android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/textView29"
         android:text="1526475959"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView34"
@@ -106,7 +110,8 @@
         android:layout_alignBottom="@+id/textView29"
         android:layout_alignStart="@+id/textView33"
         android:text="17395760744"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/bck"

@@ -25,7 +25,8 @@
         android:layout_alignEnd="@+id/prscrptn_title"
         android:layout_below="@+id/prscrptn_title"
         android:layout_marginTop="45dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dob"
@@ -34,7 +35,8 @@
         android:layout_alignStart="@+id/name"
         android:layout_below="@+id/name"
         android:layout_marginTop="31dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/age"
@@ -43,7 +45,8 @@
         android:layout_alignEnd="@+id/dob"
         android:layout_below="@+id/dob"
         android:layout_marginTop="33dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/symptom"
@@ -52,7 +55,8 @@
         android:layout_alignStart="@+id/age"
         android:layout_below="@+id/age"
         android:layout_marginTop="30dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/medication"
@@ -61,7 +65,8 @@
         android:layout_alignStart="@+id/symptom"
         android:layout_below="@+id/symptom"
         android:layout_marginTop="26dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/view_doctor"
@@ -70,7 +75,8 @@
         android:layout_alignStart="@+id/medication"
         android:layout_below="@+id/medication"
         android:layout_marginTop="32dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/date"
@@ -79,7 +85,8 @@
         android:layout_alignStart="@+id/view_doctor"
         android:layout_below="@+id/view_doctor"
         android:layout_marginTop="33dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView9"

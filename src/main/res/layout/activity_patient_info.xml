@@ -97,7 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/name"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dob_txt"
@@ -105,7 +106,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/name_text"
         android:layout_alignTop="@+id/dob"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/age_txt"
@@ -113,7 +115,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/dob_txt"
         android:layout_alignTop="@+id/age"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/num_txt"
@@ -121,7 +124,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/age_txt"
         android:layout_alignTop="@+id/number"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/email_txt"
@@ -129,7 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/num_txt"
         android:layout_alignTop="@+id/emai"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/adrs_txt"
@@ -137,6 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/email_txt"
         android:layout_alignTop="@+id/address"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

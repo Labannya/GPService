@@ -33,7 +33,6 @@
         <activity android:name=".ViewAvailableDate" />
         <activity android:name=".ViewAvailableTime" />
         <activity android:name=".ViewAppointment" />
-        <activity android:name=".NoAppointment" />
         <activity android:name=".CancelAppointment" />
         <activity android:name=".PrescriptionDate" />
         <activity android:name=".ViewPrescription" />

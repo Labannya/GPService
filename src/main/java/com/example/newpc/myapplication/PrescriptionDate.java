@@ -72,7 +72,7 @@ public class PrescriptionDate extends AppCompatActivity {
                         Toast toastView = Toast.makeText(PrescriptionDate.this, "You have no prescription on this date. May be you just visited or missed the appointment", Toast.LENGTH_SHORT);
                         toastView.show();
                     }
-                        //System.out.println("Item is " + theList.get(position));
+
                         else{
                             Intent i = new Intent(PrescriptionDate.this, ViewPrescription.class);
 
